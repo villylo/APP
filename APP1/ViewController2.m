@@ -16,7 +16,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    NSString* urlString = @"https://oauth.vk.com/authorize?client_id=5957145&display=page&redirect_uri=http://vk.com/callback&scope=friends&response_type=token&v=5.63&state=123456";
+    NSURL* url = [NSURL URLWithString:urlString];
+    NSURLRequest* request = [NSURLRequest requestWithURL:url];
+    [self.webView loadRequest:request];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +30,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - UIWebViewDelegate
+
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    return YES;
 }
-*/
+- (void)webViewDidStartLoad:(UIWebView *)webView{
+    
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    
+}
 
 @end

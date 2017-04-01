@@ -24,6 +24,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 - (IBAction)goToSecondScreen:(id)sender {
     [self.navigationController pushViewController:[[ViewController2 alloc] initWithNibName: @"ViewController2" bundle: nil] animated:YES];
 }
