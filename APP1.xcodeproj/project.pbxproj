@@ -530,6 +530,7 @@
 				FA72C9071E81E83200172E51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA72C9081E81E83200172E51 /* Build configuration list for PBXNativeTarget "APP1Tests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +539,7 @@
 				FA72C90A1E81E83200172E51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FA72C90B1E81E83200172E51 /* Build configuration list for PBXNativeTarget "APP1UITests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +548,7 @@
 				FA72C90D1E81E83200172E51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

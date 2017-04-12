@@ -19,7 +19,7 @@
     NSString* urlString = @"https://oauth.vk.com/authorize?client_id=5957145&display=page&redirect_uri=http://vk.com/callback&scope=friends&response_type=token&v=5.63&state=123456";
     NSURL* url = [NSURL URLWithString:urlString];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
-    [self.webView loadRequest:request];
+    [self.testWebView loadRequest:request];
     
     
     
@@ -34,13 +34,20 @@
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *myURL = [[NSURL alloc]init];
+    myURL = self.testWebView.request.URL.absoluteURL;
+    NSLog(@"The URL is %@", myURL);
+    /* попробовала разные вариации, но у меня ничего не работает
+     NSString* currentURL = webView.request.URL.absoluteString;
+    NSLog(@"THE URL IS %@",currentURL);
+     */
     return YES;
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
-    
+  
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-
+   
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     
