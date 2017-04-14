@@ -20,6 +20,8 @@
     NSURL* url = [NSURL URLWithString:urlString];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     [self.testWebView loadRequest:request];
+    // Нужно сказать webView чтобы оно нам отдавало все события (self это текущий класс)
+    self.testWebView.delegate = self;
     
     
     
@@ -34,13 +36,20 @@
 #pragma mark - UIWebViewDelegate
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
-    NSURL *myURL = [[NSURL alloc]init];
-    myURL = self.testWebView.request.URL.absoluteURL;
-    NSLog(@"The URL is %@", myURL);
-    /* попробовала разные вариации, но у меня ничего не работает
-     NSString* currentURL = webView.request.URL.absoluteString;
-    NSLog(@"THE URL IS %@",currentURL);
-     */
+    
+    // Для начала нам нужно понять что мы ищем, и нужно выделить какую-то черту, к которой привяжемся, к примеру строку blank.html, она есть в нужном нам URL
+    if([request.URL.absoluteString containsString:@"blank.html"]){
+        NSString* stringURL = request.URL.absoluteString; // мы нашли нужную строку
+        stringURL = [stringURL stringByReplacingOccurrencesOfString:@"#" withString:@"?"]; // Тут наверно не много сложно будет, нужно почитать что такое HTTP GET запрос, пока можно принять это как истину)
+        NSURLComponents* components = [[NSURLComponents alloc] initWithString:stringURL];
+        for(NSURLQueryItem* item in components.queryItems){ // Тут мы проходимся по всем query в GET запросе и ищем токен
+            if([item.name isEqualToString:@"access_token"]){ // Мы его нашли
+                NSLog(@"%@", item.value); // Выводим его, именно этот ключ нам и нужен, чтобы получить доступ к данным из VK
+            }
+        }
+    
+    }
+    
     return YES;
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView{
